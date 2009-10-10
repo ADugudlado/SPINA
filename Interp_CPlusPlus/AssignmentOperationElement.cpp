@@ -33,7 +33,7 @@ void AssignmentOperationElement::setMatrixLhs(MatrixVariableElement * lhs) {
 
 
 Element * AssignmentOperationElement::getRhs() { 
-   return mRhs; 
+		return mRhs; 
 }
 
 void AssignmentOperationElement::setRhs(Element * rhs) { 

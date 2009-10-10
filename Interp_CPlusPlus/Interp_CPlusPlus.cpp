@@ -69,7 +69,9 @@ public:
 int main(array<System::String  ^> ^args)
 {
    Main themain;
-   themain.VisitLine("m[]={1,4,2}:{1,2,1}:{1,2,4};");
+   themain.VisitLine("asasdas");
    themain.RunEvalLoop();
    return 0;
 }
+
+//"m[]={1}:{2}:{3};s[]={1,0,0}:{0,1,0}:{0,0,1};m[]=s[]*m[];"

@@ -57,14 +57,16 @@ program returns [std::vector<Element *> * ret]
 @init{
   ret = new std::vector<Element *>();
 }
-  : (expr {ret->push_back($expr.ret); } )+;
+  : (expr {ret->push_back($expr.ret); } )+
+    |expr {cout<<"Invalid Command";};
+    
 
 expr returns [Element * ret]
   : assignment {ret = $assignment.ret;}
   | matrixassignment {ret=$matrixassignment.ret;}
   | print { ret = $print.ret; }
   | matrixprint {ret = $matrixprint.ret; };
-
+  
 matrixassignment returns [MatrixAssignmentOperationElement * ret]
 @init {
   ret = new MatrixAssignmentOperationElement();
@@ -73,8 +75,10 @@ matrixassignment returns [MatrixAssignmentOperationElement * ret]
     ASSIGNMENT 
 	(matrixvalue {ret->setRhs($matrixvalue.ret); } 		
 	 |matrixaddition {ret->setRhs($matrixaddition.ret);}
+	 |matrixmultiply {ret->setRhs($matrixmultiply.ret);} 
     ) END_OF_STATEMENT;
-
+	
+	
 matrixaddition returns [MatrixAdditionOperationElement * ret]
 @init {
   ret = new MatrixAdditionOperationElement();
@@ -87,9 +91,9 @@ matrixmultiply returns [MatrixMultiplyOperationElement *ret]
 @init {
    ret=new MatrixMultiplyOperationElement();
 }
-: el1=matrixvalue { ret->setLhs($el1.ret); } 
+: el1=matrixvariable { ret->setLhs($el1.ret); } 
     '*' 
-  el2=matrixvalue { ret->setRhs($el2.ret); };
+  el2=matrixvariable { ret->setRhs($el2.ret); };
 
 matrixvariable returns [MatrixVariableElement * ret]	
 @init {

@@ -11,8 +11,9 @@
 #include "InterpreterVisitor.h"
 #include <iostream>
 #include <sstream> 
+#include <string>
 #include<vector>
-
+#include "ThreadClasses.h"
 InterpreterVisitor::InterpreterVisitor(){
 }
 
@@ -30,6 +31,7 @@ bool InterpreterVisitor::map_contains_matrixkey(std::string key){
       return false;
    return true;
 }
+
 
 void InterpreterVisitor::VisitVariableElement(VariableElement * element){
     if(map_contains_key(element->getText())){
@@ -134,14 +136,14 @@ void InterpreterVisitor::VisitMatrixPrintOperationElement(MatrixPrintOperationEl
 	VisitElement(element->getChildElement());
     std::vector<std::vector<int>> printmatrix = getTopOfMatrixStack();
 	if(printmatrix.size()!=0){
-    std::cout << "matrix values:" ;
-	std::cout<<"\n";
-	for(unsigned i=0;i<printmatrix.size();i++){
-		for(unsigned j=0;j<printmatrix[i].size();j++){
-			std::cout<<printmatrix[i][j]<<" ";
-		}
+		std::cout << "matrix values:" ;
 		std::cout<<"\n";
-	}
+		for(unsigned i=0;i<printmatrix.size();i++){
+			for(unsigned j=0;j<printmatrix[i].size();j++){
+				std::cout<<printmatrix[i][j]<<" ";
+			}
+			std::cout<<"\n";
+		}
 	}
 	else
 		std::cout<<"\nMatrix Variable doesn't exist\n";
@@ -154,12 +156,24 @@ void InterpreterVisitor::VisitMatrixAdditionOperationElement(MatrixAdditionOpera
     std::vector<std::vector<int>> lhs = getTopOfMatrixStack();
     std::vector<std::vector<int>> result ;
 	if(rhs.size()==lhs.size()&&rhs.begin()->size()==lhs.begin()->size()){
-		for(int i=0;i<rhs.size();i++){
-			std::vector<int> row;
-			for(int j=0;j<rhs.begin()->size();j++){
-				row.push_back( rhs[i][j]+lhs[i][j]);
-			}
-			result.push_back(row);
+		std::vector<AddThread*> process;
+		AddThread *tempProcess;
+		thread *t;
+		std::vector<thread*> ts;
+		for(unsigned i=0;i<rhs.size();i++){			
+			tempProcess=new AddThread(std::string("Thread "));
+			tempProcess->updateThread(rhs[i],lhs[i]);
+			process.push_back(tempProcess);
+			t=new thread(*tempProcess);
+			t->start();
+			ts.push_back(t);
+		}
+		for(unsigned i=0;i<ts.size();){
+			WaitForSingleObject(ts[i]->handle(),INFINITE);
+			i++;
+		}
+		for(unsigned i=0;i<process.size();i++){
+			result.push_back(process[i]->returnSum());
 		}
 	}else{
 		std::cout<<"\nMismatch of Orders of given Matrices";
@@ -167,12 +181,59 @@ void InterpreterVisitor::VisitMatrixAdditionOperationElement(MatrixAdditionOpera
 	}
     matrixStack.push(result);    
 }
-
+          
 void InterpreterVisitor::VisitMatrixMultiplyOperationElement(MatrixMultiplyOperationElement * element){
     VisitElement(element->getLhs());
     VisitElement(element->getRhs());
-    /*int rhs = getTopOfStack();
-    int lhs = getTopOfStack();
-    int result = rhs + lhs;
-    mStack.push(result);    */
+    std::vector<std::vector<int>> rhs = getTopOfMatrixStack();
+    std::vector<std::vector<int>> lhs = getTopOfMatrixStack();
+	std::vector<std::vector<int>> tempMatrix=matrixTanspose(rhs);
+    std::vector<std::vector<int>> result ;
+	if(lhs.begin()->size()==rhs.size()){
+		std::vector<std::vector<MultiplyThread*>> processlist;
+		std::vector<MultiplyThread*> process;
+		MultiplyThread *tempProcess;
+		std::vector<thread*> ts;
+		thread *t;
+		for(unsigned i=0;i<lhs.size();i++){			
+			for(unsigned j=0;j<tempMatrix.size();j++){
+				tempProcess=new MultiplyThread(std::string("Thread "));
+				tempProcess->updateThread(lhs[i],tempMatrix[j]);
+				process.push_back(tempProcess);
+				t=new thread(*tempProcess);
+				t->start();
+				ts.push_back(t);
+			}
+			processlist.push_back(process);
+			process.clear();
+		}
+		for(unsigned i=0;i<ts.size();){
+			WaitForSingleObject(ts[i]->handle(),INFINITE);
+			i++;
+		}
+		for(unsigned i=0;i<processlist.size();i++){			
+		  std::vector<int> row;
+		  for(unsigned j=0;j<processlist[i].size();j++){			
+			row.push_back(processlist[i][j]->returnProduct());
+		  }
+		  result.push_back(row);
+		}
+	
+	}else{
+		std::cout<<"\nNumber of Columns of first Matrix and Rows of second Matrix are not equal";
+		return;
+	}
+	matrixStack.push(result);    
+}
+
+std::vector<std::vector<int>> InterpreterVisitor::matrixTanspose(std::vector<std::vector<int>> mat){
+	std::vector<std::vector<int>> matrixTp;
+	for(unsigned i=0;i<mat.begin()->size();i++){
+		std::vector<int> temp;
+		for(unsigned j=0;j<mat.size();j++){
+			temp.push_back(mat[j][i]);
+		}
+		matrixTp.push_back(temp);
+	}
+	return matrixTp;
 }

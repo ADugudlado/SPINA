@@ -38,6 +38,7 @@ private:
    int parseInt(std::string value);
    int getTopOfStack();
    std::vector<std::vector<int>> getTopOfMatrixStack();
+   std::vector<std::vector<int>> matrixTanspose(std::vector<std::vector<int>>);
 public:
   InterpreterVisitor();
   virtual void VisitVariableElement(VariableElement * element);

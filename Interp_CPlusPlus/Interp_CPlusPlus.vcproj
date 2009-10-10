@@ -291,6 +291,18 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\locks.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\MatrixAdditionOperationElement.cpp"
 				>
 				<FileConfiguration
@@ -419,6 +431,18 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Threads.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\VariableElement.cpp"
 				>
 				<FileConfiguration
@@ -481,6 +505,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\locks.h"
+				>
+			</File>
+			<File
 				RelativePath=".\MatrixAdditionOperationElement.h"
 				>
 			</File>
@@ -522,6 +550,14 @@
 			</File>
 			<File
 				RelativePath=".\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ThreadClasses.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Threads.h"
 				>
 			</File>
 			<File
