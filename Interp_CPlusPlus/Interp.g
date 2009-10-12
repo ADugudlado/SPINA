@@ -57,9 +57,9 @@ program returns [std::vector<Element *> * ret]
 @init{
   ret = new std::vector<Element *>();
 }
-  : (expr {ret->push_back($expr.ret); } )+
-    |expr {cout<<"Invalid Command";};
-    
+  : (expr {ret->push_back($expr.ret); } )+;
+   
+ 
 
 expr returns [Element * ret]
   : assignment {ret = $assignment.ret;}

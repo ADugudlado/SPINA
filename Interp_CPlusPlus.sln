@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Interp_CPlusPlus", "Interp_CPlusPlus\Interp_CPlusPlus.vcproj", "{53804E8B-CA13-40C2-93CF-235D53AE0B84}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SPINA", "Interp_CPlusPlus\SPINAUI\SPINAUI.vcproj", "{526A28EE-0DFC-460A-96CF-B6965D016E96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{53804E8B-CA13-40C2-93CF-235D53AE0B84}.Debug|Win32.Build.0 = Debug|Win32
 		{53804E8B-CA13-40C2-93CF-235D53AE0B84}.Release|Win32.ActiveCfg = Release|Win32
 		{53804E8B-CA13-40C2-93CF-235D53AE0B84}.Release|Win32.Build.0 = Release|Win32
+		{526A28EE-0DFC-460A-96CF-B6965D016E96}.Debug|Win32.ActiveCfg = Debug|Win32
+		{526A28EE-0DFC-460A-96CF-B6965D016E96}.Debug|Win32.Build.0 = Debug|Win32
+		{526A28EE-0DFC-460A-96CF-B6965D016E96}.Release|Win32.ActiveCfg = Release|Win32
+		{526A28EE-0DFC-460A-96CF-B6965D016E96}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

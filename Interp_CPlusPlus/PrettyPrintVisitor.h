@@ -28,7 +28,6 @@
 using namespace System;
 
 public class PrettyPrintVisitor : public Visitor {
-
 public:
   virtual void VisitVariableElement(VariableElement * element);
   virtual void VisitMatrixVariableElement(MatrixVariableElement * element);
