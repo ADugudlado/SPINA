@@ -30,6 +30,7 @@ options {
 #include "AdditionOperationElement.h"
 #include "PrintOperationElement.h"
 #include "MultiplyOperationElement.h"
+#include "ParallelforOperationElement.h"
 }
 
 @lexer::header {
@@ -48,6 +49,7 @@ options {
 #include "AdditionOperationElement.h"
 #include "PrintOperationElement.h"
 #include "MultiplyOperationElement.h"
+#include "ParallelforOperationElement.h"
 }
 
 /*
@@ -59,14 +61,23 @@ program returns [std::vector<Element *> * ret]
 }
   : (expr {ret->push_back($expr.ret); } )+;
    
+   
  
 
 expr returns [Element * ret]
   : assignment {ret = $assignment.ret;}
   | matrixassignment {ret=$matrixassignment.ret;}
   | print { ret = $print.ret; }
-  | matrixprint {ret = $matrixprint.ret; };
-  
+  | matrixprint { ret = $matrixprint.ret; }
+  | parallelfor { ret = $parallelfor.ret; };
+
+parallelfor returns [ParallelforOperationElement * ret]
+@init {
+	ret=new ParallelforOperationElement();
+}
+ : 'parallelfor' LSQBRACKET variable {ret->setIndexVariableName($variable.ret);} RSQBRACKET
+	END_OF_STATEMENT;
+	  
 matrixassignment returns [MatrixAssignmentOperationElement * ret]
 @init {
   ret = new MatrixAssignmentOperationElement();
@@ -179,8 +190,7 @@ print returns [PrintOperationElement * ret]
   : 'print' var_or_int_literal {ret->setChildElement($var_or_int_literal.ret); }
     END_OF_STATEMENT; 
 
-	
-	
+
 /*
  * Lexer Rules
  */
@@ -196,5 +206,4 @@ INT_LITERAL: ('0'..'9')+;
 WHITESPACE : (' ' | '\t' | '\n' | '\r' )+ {$channel = HIDDEN; } ;
 MATRIXVARIABLE:VARIABLE LSQBRACKET RSQBRACKET;
 MATRIXVALUE: (('{'(INT_LITERAL ',')* INT_LITERAL'}')':')* ('{'(INT_LITERAL ',')* INT_LITERAL'}');
-
 

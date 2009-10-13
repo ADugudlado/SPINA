@@ -58,7 +58,7 @@ public:
         Element * curr = (*elements)[i];
 		try{
         curr->Accept(print_visitor);
-        curr->Accept(interp_visitor);
+   //   curr->Accept(interp_visitor);
 		std::string tempstr=ss.str();
 		System::String^ t=gcnew String(tempstr.c_str());
 		Console::Write(t->ToString());

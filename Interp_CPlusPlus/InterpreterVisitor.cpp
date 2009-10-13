@@ -237,3 +237,7 @@ std::vector<std::vector<int>> InterpreterVisitor::matrixTanspose(std::vector<std
 	}
 	return matrixTp;
 }
+
+void InterpreterVisitor::VisitParallelforOperationElement(ParallelforOperationElement *element){
+	std::cout<<"in parallel interpretor";
+}

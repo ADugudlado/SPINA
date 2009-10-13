@@ -20,15 +20,8 @@ VariableElement * AssignmentOperationElement::getLhs() {
    return mLhs; 
 }
 
-MatrixVariableElement * AssignmentOperationElement::getMatrixLhs() { 
-   return matrixmLhs; 
-}
-
 void AssignmentOperationElement::setLhs(VariableElement * lhs) { 
    mLhs = lhs; 
-}
-void AssignmentOperationElement::setMatrixLhs(MatrixVariableElement * lhs) { 
-   matrixmLhs= lhs; 
 }
 
 

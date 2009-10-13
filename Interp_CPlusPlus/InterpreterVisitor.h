@@ -23,6 +23,7 @@
 #include "AdditionOperationElement.h"
 #include "PrintOperationElement.h"
 #include "MultiplyOperationElement.h"
+#include "ParallelforOperationElement.h"
 #include <map>
 #include <stack>
 #include <string>
@@ -53,6 +54,7 @@ public:
   virtual void VisitAdditionOperationElement(AdditionOperationElement * element);
   virtual void VisitPrintOperationElement(PrintOperationElement * element);
   virtual void VisitMultiplyOperationElement(MultiplyOperationElement * element);
+  virtual void VisitParallelforOperationElement(ParallelforOperationElement * element);
 };
 
 #endif //INTERPRETER_VISITOR_H

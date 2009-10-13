@@ -71,17 +71,16 @@ namespace Interp_CPlusPlus {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->strbuilder=gcnew System::Text::StringBuilder();
 			this->buttonRun = (gcnew System::Windows::Forms::Button());
 			this->groupBoxOptions = (gcnew System::Windows::Forms::GroupBox());
 			this->buttonSave = (gcnew System::Windows::Forms::Button());
 			this->buttonload = (gcnew System::Windows::Forms::Button());
 			this->groupBoxOutput = (gcnew System::Windows::Forms::GroupBox());
+			this->richTextBoxOutput = (gcnew System::Windows::Forms::RichTextBox());
 			this->groupBoxCommandLine = (gcnew System::Windows::Forms::GroupBox());
 			this->richTextBoxCmdLine = (gcnew System::Windows::Forms::RichTextBox());
 			this->openFileDialogFileLoc = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->saveFileDialogFileLoc = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->richTextBoxOutput = (gcnew System::Windows::Forms::RichTextBox());
 			this->groupBoxOptions->SuspendLayout();
 			this->groupBoxOutput->SuspendLayout();
 			this->groupBoxCommandLine->SuspendLayout();
@@ -140,6 +139,20 @@ namespace Interp_CPlusPlus {
 			this->groupBoxOutput->TabStop = false;
 			this->groupBoxOutput->Text = L"Output";
 			// 
+			// richTextBoxOutput
+			// 
+			this->richTextBoxOutput->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->richTextBoxOutput->DetectUrls = false;
+			this->richTextBoxOutput->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->richTextBoxOutput->Location = System::Drawing::Point(9, 17);
+			this->richTextBoxOutput->Name = L"richTextBoxOutput";
+			this->richTextBoxOutput->ReadOnly = true;
+			this->richTextBoxOutput->Size = System::Drawing::Size(308, 194);
+			this->richTextBoxOutput->TabIndex = 0;
+			this->richTextBoxOutput->Text = L"";
+			this->richTextBoxOutput->WordWrap = false;
+			// 
 			// groupBoxCommandLine
 			// 
 			this->groupBoxCommandLine->Controls->Add(this->richTextBoxCmdLine);
@@ -152,6 +165,8 @@ namespace Interp_CPlusPlus {
 			// 
 			// richTextBoxCmdLine
 			// 
+			this->richTextBoxCmdLine->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
 			this->richTextBoxCmdLine->Location = System::Drawing::Point(4, 20);
 			this->richTextBoxCmdLine->Name = L"richTextBoxCmdLine";
 			this->richTextBoxCmdLine->Size = System::Drawing::Size(411, 84);
@@ -168,18 +183,6 @@ namespace Interp_CPlusPlus {
 			// saveFileDialogFileLoc
 			// 
 			this->saveFileDialogFileLoc->Filter = L"Text files (*.txt)|*.txt";
-			// 
-			// richTextBoxOutput
-			// 
-			this->richTextBoxOutput->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->richTextBoxOutput->DetectUrls = false;
-			this->richTextBoxOutput->Location = System::Drawing::Point(9, 17);
-			this->richTextBoxOutput->Name = L"richTextBoxOutput";
-			this->richTextBoxOutput->ReadOnly = true;
-			this->richTextBoxOutput->Size = System::Drawing::Size(308, 194);
-			this->richTextBoxOutput->TabIndex = 0;
-			this->richTextBoxOutput->Text = L"";
-			this->richTextBoxOutput->WordWrap = false;
 			// 
 			// SPINAUserInterface
 			// 
@@ -246,6 +249,7 @@ private: System::Void buttonRun_Click(System::Object^  sender, System::EventArgs
 
 //			 DWORD tid;int *i =0;
 //			 hthread=CreateThread(NULL,0,&Interp_CPlusPlus::SPINAUserInterface::getOutput,&i,TRUE,&tid);
+			 strbuilder=gcnew System::Text::StringBuilder();
 			 TextWriter^ temp=Console::Out;
 			 StringWriter^ stw=gcnew StringWriter(strbuilder);			 
 			 Console::SetOut(stw);			 

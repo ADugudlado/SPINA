@@ -399,6 +399,18 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\ParallelforOperationElement.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\PrettyPrintVisitor.cpp"
 				>
 				<FileConfiguration
@@ -557,6 +569,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ParallelforOperationElement.h"
+				>
+			</File>
+			<File
 				RelativePath=".\PrettyPrintVisitor.h"
 				>
 			</File>
@@ -604,11 +620,11 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\app.rc"
+				RelativePath=".\SPINAUI\app.rc"
 				>
 			</File>
 			<File
-				RelativePath=".\SPINAUI\app.rc"
+				RelativePath=".\app.rc"
 				>
 			</File>
 		</Filter>

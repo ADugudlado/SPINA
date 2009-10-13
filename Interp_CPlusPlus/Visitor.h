@@ -25,6 +25,7 @@ class AdditionOperationElement;
 class PrintOperationElement;
 class MatrixPrintOperationElement;
 class MultiplyOperationElement;
+class  ParallelforOperationElement;
 class Element;
 
 public class Visitor {
@@ -42,6 +43,7 @@ public:
   virtual void VisitAdditionOperationElement(AdditionOperationElement * element) = 0;
   virtual void VisitPrintOperationElement(PrintOperationElement * element) = 0;
   virtual void VisitMultiplyOperationElement(MultiplyOperationElement * element) = 0;
+  virtual void VisitParallelforOperationElement(ParallelforOperationElement * element)=0;
 
   void VisitElement(Element * element);
 

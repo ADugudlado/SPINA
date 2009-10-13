@@ -18,15 +18,12 @@
 public class AssignmentOperationElement : public Element {
 private:
   VariableElement * mLhs;
-  MatrixVariableElement * matrixmLhs;
   Element * mRhs;  
 public:
   virtual void Accept(Visitor * visitor);
 
-  MatrixVariableElement * getMatrixLhs();
   VariableElement * getLhs();
   void setLhs(VariableElement * lhs);
-  void setMatrixLhs(MatrixVariableElement * lhs);
 
   Element * getRhs();
   void setRhs(Element * rhs);

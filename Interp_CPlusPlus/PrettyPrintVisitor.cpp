@@ -77,3 +77,8 @@ void PrettyPrintVisitor::VisitMatrixMultiplyOperationElement(MatrixMultiplyOpera
     VisitElement(element->getRhs());
     std::cout << " ";
 }
+void PrettyPrintVisitor::VisitParallelforOperationElement(ParallelforOperationElement * element){
+	std::cout<<"\nParallel-for : index variable -"<<element->getIndexVariableName();
+	std::cout<<" from "<<element->getStartValue()<<" to "<<element->getEndValue();
+	std::cout<<"\nBody : \n"<<element->getBody();
+}

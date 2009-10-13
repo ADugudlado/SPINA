@@ -20,6 +20,7 @@
 #include "AdditionOperationElement.h"
 #include "AssignmentOperationElement.h"
 #include "MultiplyOperationElement.h"
+#include "ParallelforOperationElement.h"
 
 void Visitor::VisitElement(Element * element){
     IntegerElement * int_elem = dynamic_cast<IntegerElement * >(element);
@@ -32,6 +33,7 @@ void Visitor::VisitElement(Element * element){
     AdditionOperationElement * add_elem = dynamic_cast<AdditionOperationElement *>(element);
     AssignmentOperationElement * assign_elem = dynamic_cast<AssignmentOperationElement *>(element);
 	MultiplyOperationElement * multiply_elem=dynamic_cast<MultiplyOperationElement *>(element);
+	ParallelforOperationElement * pllfor_elem=dynamic_cast<ParallelforOperationElement *>(element);
     if(int_elem != nullptr){
       VisitIntegerElement(int_elem);       
     } else if(var_elem != nullptr){
@@ -52,5 +54,7 @@ void Visitor::VisitElement(Element * element){
       VisitAssignmentOperationElement(assign_elem);      
 	}else if(multiply_elem!=nullptr){
 	  VisitMultiplyOperationElement(multiply_elem);      
+	}else if(pllfor_elem!=nullptr){
+	  VisitParallelforOperationElement(pllfor_elem);
 	}
 }
