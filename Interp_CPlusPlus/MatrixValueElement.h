@@ -1,14 +1,14 @@
 #ifndef MATRIX_VALUE_ELEMENT_H
 #define MATRIX_VALUE_ELEMENT_H
+
 ////////////////////////////////////////////////////////////////////////
-// MatrixValueElement.h: holds the data needed to represent an Integer.
+// MatrixValueElement.h: holds the data needed to represent an Matrix values.
 // 
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
+
 #include "Element.h"
 #include "Visitor.h"
 #include <string>

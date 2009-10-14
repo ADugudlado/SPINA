@@ -75,7 +75,16 @@ parallelfor returns [ParallelforOperationElement * ret]
 @init {
 	ret=new ParallelforOperationElement();
 }
- : 'parallelfor' LSQBRACKET variable {ret->setIndexVariableName($variable.ret);} RSQBRACKET
+ : 'parallelfor' '('
+    variable {ret->setIndexVariableName($variable.ret);} 
+	WHITESPACE
+	RANGE     {pANTLR3_STRING str = $RANGE.text;
+	       char * chars = (char *) str->chars;
+               ret->setIndexRange(std::string(chars)); }
+	')'
+	'{'
+	 (assignment {ret->setBody($assignment.ret);})+
+	'}'
 	END_OF_STATEMENT;
 	  
 matrixassignment returns [MatrixAssignmentOperationElement * ret]
@@ -113,7 +122,6 @@ matrixvariable returns [MatrixVariableElement * ret]
 	: MATRIXVARIABLE{
 				   pANTLR3_STRING str = $MATRIXVARIABLE.text;
 				char * chars = (char *) str->chars;
-				std::cout<<"Matrix variable syntax matched "<<*chars;
 				ret->setText(std::string(chars));};
 				
 matrixvalue returns [MatrixValueElement * ret]
@@ -122,7 +130,6 @@ matrixvalue returns [MatrixValueElement * ret]
 }
  : MATRIXVALUE {pANTLR3_STRING str = $MATRIXVALUE.text;
 				char * chars = (char *) str->chars;
-				std::cout<<"Matrix value syntax matched "<<*chars;
 				ret->setText(std::string(chars));};
 	
 matrixprint returns [MatrixPrintOperationElement * ret]
@@ -206,4 +213,4 @@ INT_LITERAL: ('0'..'9')+;
 WHITESPACE : (' ' | '\t' | '\n' | '\r' )+ {$channel = HIDDEN; } ;
 MATRIXVARIABLE:VARIABLE LSQBRACKET RSQBRACKET;
 MATRIXVALUE: (('{'(INT_LITERAL ',')* INT_LITERAL'}')':')* ('{'(INT_LITERAL ',')* INT_LITERAL'}');
-
+RANGE: INT_LITERAL '..' INT_LITERAL;

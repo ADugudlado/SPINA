@@ -2,10 +2,8 @@
 // PrettyPrintVisitor.cpp: demonstrates printing the syntax tree in 
 //  a difference source language than the input for the Interp language.
 // 
-// version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// version: 1.1
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
 #include <iostream>
@@ -80,5 +78,8 @@ void PrettyPrintVisitor::VisitMatrixMultiplyOperationElement(MatrixMultiplyOpera
 void PrettyPrintVisitor::VisitParallelforOperationElement(ParallelforOperationElement * element){
 	std::cout<<"\nParallel-for : index variable -"<<element->getIndexVariableName();
 	std::cout<<" from "<<element->getStartValue()<<" to "<<element->getEndValue();
-	std::cout<<"\nBody : \n"<<element->getBody();
+	std::cout<<"\nBody : \n";
+	vector<AssignmentOperationElement *> assignlist=element->getBody();
+	for(unsigned i=0;i<assignlist.size();i++)
+	  VisitAssignmentOperationElement(assignlist[i]);
 }

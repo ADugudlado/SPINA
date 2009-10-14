@@ -3,9 +3,7 @@
 //  syntax tree.
 // 
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
 #include "InterpreterVisitor.h"
@@ -111,8 +109,14 @@ void InterpreterVisitor::VisitAdditionOperationElement(AdditionOperationElement 
     VisitElement(element->getRhs());
     int rhs = getTopOfStack();
     int lhs = getTopOfStack();
-    int result = rhs + lhs;
-    mStack.push(result);    
+	if(rhs!=-1&&lhs!=-1){
+     int result = rhs + lhs;
+     mStack.push(result);
+	}else{
+		std::cout<<"\nOne of the Variables doesn't exist";		
+		std::cout<<"\nAborting Addition Operation";
+		return;
+	}
 }
 
 void InterpreterVisitor::VisitMultiplyOperationElement(MultiplyOperationElement * element){
@@ -239,5 +243,23 @@ std::vector<std::vector<int>> InterpreterVisitor::matrixTanspose(std::vector<std
 }
 
 void InterpreterVisitor::VisitParallelforOperationElement(ParallelforOperationElement *element){
-	std::cout<<"in parallel interpretor";
+	    vector<AssignmentOperationElement *> assignlist=element->getBody();
+		//int thCount = element->getEndValue()-element->getEndValue();
+		HANDLE createTh;
+		vector<HANDLE *> thlist ;
+		DWORD tid;
+		ParallelforThread *temp=new ParallelforThread();
+		temp->setInterpreterVisitor(this);
+		temp->setElement(element);
+		mVariableMap[element->getIndexVariableName()]=element->getStartValue();
+		for(unsigned i=element->getStartValue();i<element->getEndValue();i++){
+			mVariableMap[element->getIndexVariableName()]=i;
+			temp->setCurrentValue(i);
+		    createTh=CreateThread(NULL,0,startIteration,temp,0,&tid);
+			thlist.push_back( &createTh);
+		}
+		for(unsigned i=0;i<thlist.size();i++)
+			WaitForSingleObject(thlist[i],INFINITE);
+		
 }
+

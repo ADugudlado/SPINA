@@ -3,9 +3,7 @@
 //  in the Interp language.
 // 
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
 #include "MatrixVariableElement.h"

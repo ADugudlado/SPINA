@@ -1,15 +1,12 @@
 ////////////////////////////////////////////////////////////////////////
 // ParallelforOperationElement.cpp: hold the data needed to implement the
-//  'print' function in the Interp language.
+//  'parallelfor' function in the Interp language.
 // 
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
 #include "ParallelforOperationElement.h"
-#include "VariableElement.h"
 #include<sstream>
 
 void ParallelforOperationElement::Accept(Visitor * visitor){
@@ -25,15 +22,15 @@ int ParallelforOperationElement::parseInt(std::string value){
 
 void ParallelforOperationElement::setIndexRange(std::string range){
 	start= parseInt(range.substr(0,range.find("..")));
-	end=parseInt(range.substr(range.find(".."),range.length()));
+	end=parseInt(range.substr(range.find("..")+2,range.length()));
 }
 
 void ParallelforOperationElement::setIndexVariableName(VariableElement* variablename){
 	indexer=variablename->getText();
 }
 
-void ParallelforOperationElement::setBody(std::string body){
-	bodyText=body;
+void ParallelforOperationElement::setBody(AssignmentOperationElement* body){
+	assign.push_back(body);
 }
 
 int ParallelforOperationElement::getStartValue(){
@@ -48,6 +45,6 @@ std::string ParallelforOperationElement::getIndexVariableName(){
 	return indexer;
 }
 
-Element* ParallelforOperationElement::getBody(){
-	return elem;
+vector<AssignmentOperationElement*>& ParallelforOperationElement::getBody(){
+	return assign;
 }

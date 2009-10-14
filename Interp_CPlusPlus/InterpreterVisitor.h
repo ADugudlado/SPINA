@@ -4,12 +4,11 @@
 // InterpreterVisitor.h: Implements a vistor that interprets the 
 //  syntax tree.
 // 
-// version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// version: 1.1
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
+
 #include "Visitor.h"
 #include "VariableElement.h"
 #include "MatrixVariableElement.h"
@@ -55,6 +54,7 @@ public:
   virtual void VisitPrintOperationElement(PrintOperationElement * element);
   virtual void VisitMultiplyOperationElement(MultiplyOperationElement * element);
   virtual void VisitParallelforOperationElement(ParallelforOperationElement * element);
+  std::map<std::string, int>& getMap(){return mVariableMap;}
 };
 
 #endif //INTERPRETER_VISITOR_H

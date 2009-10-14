@@ -2,14 +2,13 @@
 #define MATRIX_MULTIPLY_OPERATION_ELEMENT_H
 ////////////////////////////////////////////////////////////////////////
 // MatrixMultiplyOperationElement.h: holds the data needed for an Multiply 
-//  operation.
+//  operation on Matrices.
 // 
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
+
 #include "Element.h"
 
 public class MatrixMultiplyOperationElement : public Element {

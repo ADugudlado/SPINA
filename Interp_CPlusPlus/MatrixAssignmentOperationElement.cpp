@@ -1,12 +1,10 @@
 ////////////////////////////////////////////////////////////////////////
 // MatrixAssignmentOperationElement.cpp: holds the data needed for an 
-//  assignment operation.
+//  assignment operation on matrices.
 // 
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
-// language: C# .Net 3.5
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
+// language:C++
 ////////////////////////////////////////////////////////////////////////
 #include "MatrixAssignmentOperationElement.h"
 #include "Visitor.h"

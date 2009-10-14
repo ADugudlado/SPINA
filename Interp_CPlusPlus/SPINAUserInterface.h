@@ -151,7 +151,6 @@ namespace Interp_CPlusPlus {
 			this->richTextBoxOutput->Size = System::Drawing::Size(308, 194);
 			this->richTextBoxOutput->TabIndex = 0;
 			this->richTextBoxOutput->Text = L"";
-			this->richTextBoxOutput->WordWrap = false;
 			// 
 			// groupBoxCommandLine
 			// 
@@ -204,8 +203,8 @@ namespace Interp_CPlusPlus {
 #pragma endregion
 	private: System::Void buttonload_Click(System::Object^  sender, System::EventArgs^  e) {
 				openFileDialogFileLoc->FileName="";
-				//richTextBoxCmdLine->Text="";
     			 if(openFileDialogFileLoc->ShowDialog()==System::Windows::Forms::DialogResult::OK){
+					 richTextBoxCmdLine->Text="";
 					 System::IO::StreamReader^ st= System::IO::File::OpenText(openFileDialogFileLoc->FileName);
 					 if(st!=nullptr){
 						 for(System::String^ temp=st->ReadLine();temp!=nullptr;){
@@ -243,25 +242,18 @@ private: System::Void richTextBoxCmdLine_TextChanged(System::Object^  sender, Sy
 		 }
 private: System::Void buttonRun_Click(System::Object^  sender, System::EventArgs^  e) {
 			 Main themain;
-			 //StringWriter^ sw=gcnew StringWriter(sb);
-			 
-			 //IO::Stream^ st=gcnew StreamWriter();
-
-//			 DWORD tid;int *i =0;
-//			 hthread=CreateThread(NULL,0,&Interp_CPlusPlus::SPINAUserInterface::getOutput,&i,TRUE,&tid);
 			 strbuilder=gcnew System::Text::StringBuilder();
 			 TextWriter^ temp=Console::Out;
 			 StringWriter^ stw=gcnew StringWriter(strbuilder);			 
 			 Console::SetOut(stw);			 
-			 strbuilder->Remove(0,strbuilder->Length);
+			 strbuilder-> Remove(0,strbuilder->Length);
 			 stw->Flush();
-			 themain.VisitLine(richTextBoxCmdLine->Text);			 
+			 themain.VisitLine(richTextBoxCmdLine->Text);	
+			 if(richTextBoxCmdLine->Text=="reset")
+				 richTextBoxOutput->Text="";
 			 String^ tempstr=strbuilder->ToString();
 			 richTextBoxOutput->AppendText(tempstr);
 			 stw->Close();
-//			 CloseHandle(hthread);
-		
-			 
 		 }
 private: System::Void listBoxOutput_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }

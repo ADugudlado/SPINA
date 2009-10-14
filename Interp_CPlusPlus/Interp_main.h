@@ -1,3 +1,14 @@
+#ifndef INTERP_MAIN_H
+#define INTERP_MAIN_H
+////////////////////////////////////////////////////////////////////////
+// Interp_main.h: It contains Main class which accesses antlr parser and 
+// executes the operations depending on the datastructure returned by parser.
+// version: 1.1
+// 
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
+// language: C++/CLI
+////////////////////////////////////////////////////////////////////////
+
 #include "stdafx.h"
 #include <string>
 #include "InterpreterVisitor.h"
@@ -42,6 +53,9 @@ public:
       //source: http://www.antlr.org/wiki/display/ANTLR3/Five+minute+introduction+to+ANTLR+3
    
       std::string stdline = convert_to_stdstring(line);
+	  ss.clear();
+	  if(stdline=="reset")
+		  resetIntrepreter();
       pANTLR3_INPUT_STREAM string_stream;
       pInterpLexer lexer;
       pANTLR3_COMMON_TOKEN_STREAM tokens;
@@ -58,16 +72,16 @@ public:
         Element * curr = (*elements)[i];
 		try{
         curr->Accept(print_visitor);
-   //   curr->Accept(interp_visitor);
-		std::string tempstr=ss.str();
-		System::String^ t=gcnew String(tempstr.c_str());
-		Console::Write(t->ToString());
+        curr->Accept(interp_visitor);
 		}
 		catch(std::exception E){
 			Console::Write("\nInvalid Command\n");
+			return;
 		}
       }
-
+	  std::string tempstr=ss.str();
+		System::String^ t=gcnew String(tempstr.c_str());
+		Console::Write(t->ToString());
       parser->free(parser);
       tokens->free(tokens);
       lexer->free(lexer);
@@ -75,18 +89,10 @@ public:
 
   }
  
-   void RunEvalLoop(){	   
-      while(true){
-         Console::Write("Interp> ");
-         String^ line = Console::ReadLine();
-         if(line == "reset")
+   void resetIntrepreter(){
            interp_visitor = new InterpreterVisitor();
-         else
-           VisitLine(line);        
-		 
-       }
-	  
    }
    
 };
 
+#endif //INTERP_MAIN_H

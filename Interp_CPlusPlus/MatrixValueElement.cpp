@@ -1,10 +1,8 @@
 ////////////////////////////////////////////////////////////////////////
-// MatrixValueElement.cpp: holds the data needed to represent an Integer.
-// 
+// MatrixValueElement.cpp: holds the data needed to represent an Matrix 
+// values.
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
 #include "MatrixValueElement.h"
@@ -57,7 +55,6 @@ void MatrixValueElement::convertTextToMatrix(std::string text){
 		m.push_back(rvalues);
 		temp.clear();
 	}
-	std::cout<<"Matrix is created";
 }
 
 std::vector<int> MatrixValueElement::rowBuilder(std::string row){

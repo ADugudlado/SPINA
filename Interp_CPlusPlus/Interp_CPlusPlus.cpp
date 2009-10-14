@@ -1,6 +1,13 @@
 // Interp_CPlusPlus.cpp : main project file.
 
-//#include "Interp_main.h"
+////////////////////////////////////////////////////////////////////////
+// Interp_CplusPlus.cpp: main project file which initiates the instance 
+// of SPINA form.
+// version: 1.0
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
+// language: C++/CLI
+////////////////////////////////////////////////////////////////////////
+
 #include "SPINAUserInterface.h"
 
 

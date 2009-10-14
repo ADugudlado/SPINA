@@ -6,10 +6,8 @@
 //  visitor must implement.  Also includes the VisitElement function
 //  which alows visiting of an Element when its type is not known.
 // 
-// version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// version: 1.1
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
 

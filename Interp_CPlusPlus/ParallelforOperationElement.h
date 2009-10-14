@@ -1,18 +1,21 @@
 #ifndef PARALLELFOR_OPERATION_ELEMENT_H
 #define PARALLELFOR_OPERATION_ELEMENT_H
+
 ////////////////////////////////////////////////////////////////////////
 // ParallelforOperationElement.h: hold the data needed to implement the
-//  'print' function in the Interp language.
+//  'parallelfor' function in the Interp language.
 // 
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
+
 #include "Element.h"
 #include "Visitor.h"
+#include "VariableElement.h"
+#include "AssignmentOperationElement.h"
 #include <string>
+#include <vector>
 using namespace std;
 
 public class ParallelforOperationElement : public Element {
@@ -20,7 +23,7 @@ public class ParallelforOperationElement : public Element {
 private:
 	std::string indexvariable;
 	std::string range;
-	Element *elem;
+	vector<AssignmentOperationElement *> assign;
 	int start,end;
 	std::string indexer;
 	std::string bodyText;
@@ -28,11 +31,11 @@ private:
 public:
 	void setIndexRange(std::string );
 	void setIndexVariableName(VariableElement *);
-	void setBody(std::string);
+	void setBody(AssignmentOperationElement *);
 	int getStartValue();
 	int getEndValue();
 	std::string getIndexVariableName();
-	Element* getBody();
+	vector<AssignmentOperationElement*>& getBody();
 
   virtual void Accept(Visitor * visitor);
 };

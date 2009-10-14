@@ -1,11 +1,9 @@
 ////////////////////////////////////////////////////////////////////////
 // MatrixAdditionOperationElement.cpp: holds the data needed for an addition 
-//  operation.
+//  operation on matrices.
 // 
 // version: 1.0
-// description: part of the interpreter example for the visitor design
-//  pattern.
-// author: phil pratt-szeliga (pcpratts@syr.edu)
+// author: Mahesh Uma Gudladona (ugudlado@syr.edu)
 // language: C++/CLI
 ////////////////////////////////////////////////////////////////////////
 #include "MatrixAdditionOperationElement.h"
